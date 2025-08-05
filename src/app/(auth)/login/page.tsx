@@ -22,9 +22,20 @@ const LoginPage = () => {
         <div className="grid gap-2">
           <Label>Password</Label>
           <Input type="password" placeholder="Enter Your Password" />
+          <Link
+            href={"/forgot-password"}
+            className="text-primary underline text-sm text-end"
+          >
+            Forget Password?
+          </Link>
         </div>
         <Button className="mt-4">Sign In</Button>
-        <p className="text-center">Don&apos;t have an account? <Link href={'/sign-up'} className="text-primary underline">Create an account</Link></p>
+        <p className="text-center">
+          Don&apos;t have an account?{" "}
+          <Link href={"/sign-up"} className="text-primary underline">
+            Create an account
+          </Link>
+        </p>
       </section>
     </div>
   );
