@@ -5,7 +5,7 @@ import { Mail, MapPin, Phone } from "lucide-react";
 
 const Footer = () => {
   return (
-    <div className="bg-secondary text-white py-16">
+    <div className="bg-secondary text-white py-28">
       <Container>
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 py-4">
           <section>
