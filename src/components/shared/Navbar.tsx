@@ -23,7 +23,7 @@ const Navbar = () => {
             />
           </section>
           <section>
-            <ul className="flex gap-8">
+            <ul className="lg:flex gap-8">
               {navbarMenus.map((item) => (
                 <Link
                   href={item.path}

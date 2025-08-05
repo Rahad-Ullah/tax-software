@@ -33,7 +33,7 @@ const HeroSection = () => {
               CRA Certified
             </span>
           </p>
-          <Button className="w-fit">Start for FREE</Button>
+          <Button className="w-fit text-lg">Start for FREE</Button>
           <p className="flex items-center gap-4 text-muted-foreground">
             <Image
               src={canadaIcon}
