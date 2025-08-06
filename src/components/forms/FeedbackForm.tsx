@@ -14,6 +14,8 @@ import z from "zod";
 import { Button } from "../ui/button";
 import { Textarea } from "../ui/textarea";
 import { Star } from "lucide-react";
+import { myFetch } from "@/utils/myFetch";
+import toast from "react-hot-toast";
 
 const formSchema = z.object({
   message: z.string().min(1, { message: "Message is required" }),
@@ -32,10 +34,21 @@ const FeedbackForm = () => {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    try {
+      const res = await myFetch("/feedbacks/create", {
+        method: "POST",
+        body: values,
+      });
+      if (res?.success) {
+        toast.success(res.message || "Feedback sent successfully");
+        form.reset();
+      } else {
+        toast.error(res?.message || "Failed to send feedback");
+      }
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   return (
