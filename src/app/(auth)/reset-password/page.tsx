@@ -1,3 +1,4 @@
+import ResetPasswordForm from "@/components/forms/ResetPassword";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -24,15 +25,7 @@ const ResetPasswordPage = () => {
           </p>
         </section>
         <section className="grid gap-4 my-8">
-          <div className="grid gap-2">
-            <Label>New Password</Label>
-            <Input type="password" placeholder="Enter Your New Password" />
-          </div>
-          <div className="grid gap-2">
-            <Label>Confirm Password</Label>
-            <Input type="password" placeholder="Enter Your Confirm Password" />
-          </div>
-          <Button className="mt-4">Update Password</Button>
+          <ResetPasswordForm />
         </section>
       </div>
     </div>
