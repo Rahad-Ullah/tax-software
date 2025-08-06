@@ -1,5 +1,7 @@
 "use client";
 
+import EditProfileForm from "@/components/forms/EditProfileForm";
+import Modal from "@/components/shared/Modal";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -57,9 +59,16 @@ const ProfileDetailsPage = () => {
     <div>
       <section className="flex justify-between items-center mb-8">
         <h1 className="text-2xl font-medium">Personal Information</h1>
-        <Button className="font-normal px-4 bg-[#FCDFDE] text-primary hover:text-white">
-          <SquarePen /> Edit Profile
-        </Button>
+        <Modal
+          dialogTrigger={
+            <Button className="font-normal px-4 bg-[#FCDFDE] text-primary hover:text-white">
+              <SquarePen /> Edit Profile
+            </Button>
+          }
+          className="max-w-[50vw]"
+        >
+          <EditProfileForm />
+        </Modal>
       </section>
 
       <section>
