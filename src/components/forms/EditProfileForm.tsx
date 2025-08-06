@@ -10,6 +10,7 @@ import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import z from "zod";
+import { Button } from "../ui/button";
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -196,6 +197,10 @@ const EditProfileForm = () => {
               </FormItem>
             )}
           />
+
+          <div className="col-span-2 flex justify-end">
+            <Button className="w-fit">Save & Update</Button>
+          </div>
         </form>
       </Form>
     </section>

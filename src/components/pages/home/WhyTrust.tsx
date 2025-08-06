@@ -51,7 +51,7 @@ const WhyTrust = () => {
                   ### is perfect for freelance and all kinds of self-employment
                   returns, from simple to the most complex.
                 </p>
-                <Button variant="outline">START NOW</Button>
+                <Button variant="outline" className="w-fit ml-auto">START NOW</Button>
               </div>
             </div>
           </div>
@@ -79,7 +79,7 @@ const WhyTrust = () => {
                   ### is perfect for freelance and all kinds of self-employment
                   returns, from simple to the most complex.
                 </p>
-                <Button variant="outline">START NOW</Button>
+                <Button variant="outline" className="w-fit ml-auto">START NOW</Button>
               </div>
             </div>
           </div>
@@ -107,7 +107,7 @@ const WhyTrust = () => {
                   ### is perfect for freelance and all kinds of self-employment
                   returns, from simple to the most complex.
                 </p>
-                <Button variant="outline">START NOW</Button>
+                <Button variant="outline" className="w-fit ml-auto">START NOW</Button>
               </div>
             </div>
           </div>
