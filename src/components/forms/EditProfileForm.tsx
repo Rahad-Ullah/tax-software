@@ -161,7 +161,7 @@ const EditProfileForm = () => {
             name="homeAddress"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Bank address</FormLabel>
+                <FormLabel>Home address</FormLabel>
                 <FormControl>
                   <Input placeholder="Enter Your Home Address" {...field} />
                 </FormControl>
