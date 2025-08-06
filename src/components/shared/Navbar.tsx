@@ -14,13 +14,15 @@ const Navbar = () => {
       <Container>
         <div className="flex justify-between items-center">
           <section>
-            <Image
-              src="/logo.png"
-              alt="Company Logo"
-              width={100}
-              height={24}
-              className="rounded-md"
-            />
+            <Link href="/">
+              <Image
+                src="/logo.png"
+                alt="Company Logo"
+                width={100}
+                height={24}
+                className="rounded-md"
+              />
+            </Link>
           </section>
           <section>
             <ul className="lg:flex gap-8">
@@ -32,9 +34,11 @@ const Navbar = () => {
                 >
                   <li className="flex flex-col items-center">
                     <span>{item.title}</span>
-                    {currentPath === item.path && (
-                      <span className="w-10 h-1 bg-primary rounded-full"></span>
-                    )}
+                    <span
+                      className={`w-10 h-1 bg-primary rounded-full ${
+                        item.path === currentPath ? "block" : "hidden"
+                      }`}
+                    ></span>
                   </li>
                 </Link>
               ))}
