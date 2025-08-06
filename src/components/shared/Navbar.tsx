@@ -41,7 +41,7 @@ const Navbar = () => {
             </ul>
           </section>
           <section>
-            <Link href={""}>
+            <Link href={"/profile"}>
               <Image
                 src="/profile.png"
                 alt="Profile Picture"

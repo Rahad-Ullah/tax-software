@@ -21,8 +21,8 @@ const Sidebar = () => {
             height={24}
             className="rounded-full border-2 border-yellow-400"
           />
-          <h3>Silverson Donna</h3>
-          <p>silverson@gmail.com</p>
+          <h3 className="text-lg text-muted">Silverson Donna</h3>
+          <p className="text-muted-foreground">silverson@gmail.com</p>
         </div>
 
         <ul className="flex flex-col gap-4">
