@@ -58,7 +58,6 @@ const LoginForm = () => {
 
   return (
     <section>
-      <h1 className="text-xl font-medium mb-5">Edit Profile</h1>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="grid gap-3">
           <FormField

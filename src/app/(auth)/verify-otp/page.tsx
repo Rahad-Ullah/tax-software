@@ -1,18 +1,18 @@
-import { Button } from "@/components/ui/button";
-import {
-  InputOTP,
-  InputOTPGroup,
-  InputOTPSlot,
-} from "@/components/ui/input-otp";
+import OtpVerifyForm from "@/components/forms/OtpVerifyForm";
 import Image from "next/image";
-import Link from "next/link";
 
 const VerifyOtpPage = () => {
   return (
     <div className="flex flex-col justify-center h-screen">
       <div className="py-16 px-8 max-w-xl mx-auto">
         <section className="flex flex-col items-center text-center gap-2">
-          <Image src="/logo.png" alt="logo" width={150} height={150} className="mb-8" />
+          <Image
+            src="/logo.png"
+            alt="logo"
+            width={150}
+            height={150}
+            className="mb-8"
+          />
           <h1 className="text-3xl font-semibold text-muted">
             Check Your Email
           </h1>
@@ -22,23 +22,7 @@ const VerifyOtpPage = () => {
           </p>
         </section>
         <section className="grid gap-4 my-8">
-          <div className="flex justify-center">
-            <InputOTP maxLength={4}>
-              <InputOTPGroup className="flex justify-center">
-                <InputOTPSlot index={0} />
-                <InputOTPSlot index={1} />
-                <InputOTPSlot index={2} />
-                <InputOTPSlot index={3} />
-              </InputOTPGroup>
-            </InputOTP>
-          </div>
-          <Button className="mt-4">Verify Code</Button>
-          <p className="text-center">
-            You have not received the email?{" "}
-            <Link href={""} className="text-primary underline">
-              Resend
-            </Link>
-          </p>
+          <OtpVerifyForm />
         </section>
       </div>
     </div>
