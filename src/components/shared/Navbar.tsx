@@ -6,7 +6,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Container from "./Container";
 
-const Navbar = () => {
+const Navbar = ({ user = {} }: { user?: any }) => {
   const currentPath = usePathname();
 
   return (
@@ -47,11 +47,15 @@ const Navbar = () => {
           <section>
             <Link href={"/profile"}>
               <Image
-                src="/profile.png"
+                src={
+                  user?.image
+                    ? `${process.env.NEXT_PUBLIC_IMAGE_URL}${user?.image}`
+                    : "/profile.png"
+                }
                 alt="Profile Picture"
                 width={50}
                 height={50}
-                className="rounded-full"
+                className="rounded-full size-14"
               />
             </Link>
           </section>
