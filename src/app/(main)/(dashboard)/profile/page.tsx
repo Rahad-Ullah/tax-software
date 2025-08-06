@@ -1,3 +1,5 @@
+"use server";
+
 import EditProfileForm from "@/components/forms/EditProfileForm";
 import ProfileDetails from "@/components/pages/dashboard/profile/ProfileDetails";
 import Modal from "@/components/shared/Modal";
@@ -21,7 +23,7 @@ const ProfileDetailsPage = async () => {
           }
           className="max-w-[50vw]"
         >
-          <EditProfileForm />
+          <EditProfileForm user={user} />
         </Modal>
       </section>
 

@@ -13,43 +13,64 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import z from "zod";
 import { Button } from "../ui/button";
+import { myFetch } from "@/utils/myFetch";
+import toast from "react-hot-toast";
+import { revalidateTags } from "@/utils/revalidateTags";
 
 const formSchema = z.object({
-  name: z.string().min(2, {
-    message: "Name must be at least 2 characters.",
-  }),
-  email: z.string().email("Invalid email."),
-  dob: z.string().nonempty("Date of birth is required."),
-  accountNo: z.string().nonempty("Account number is required."),
-  transitNo: z.string().nonempty("Transit number is required."),
-  institutionNo: z.string().nonempty("Institution number is required."),
-  balance: z.number().min(0, "Balance must be greater than 0."),
-  homeAddress: z.string().nonempty("Home address is required."),
-  bankAddress: z.string().nonempty("Bank address is required."),
-  taxNo: z.string().nonempty("Tax number is required."),
+  name: z
+    .string()
+    .min(2, {
+      message: "Name must be at least 2 characters.",
+    })
+    .optional(),
+  email: z.string().email("Invalid email.").optional(),
+  dob: z.string().nonempty("Date of birth is required.").optional(),
+  accountNo: z.string().nonempty("Account number is required.").optional(),
+  transitNo: z.string().nonempty("Transit number is required.").optional(),
+  institutionNo: z
+    .string()
+    .nonempty("Institution number is required.")
+    .optional(),
+  balance: z.string().min(0, "Balance must be greater than 0.").optional(),
+  homeAddress: z.string().nonempty("Home address is required.").optional(),
+  bankAddress: z.string().nonempty("Bank address is required.").optional(),
+  taxNo: z.string().nonempty("Tax number is required.").optional(),
 });
 
-const EditProfileForm = () => {
+const EditProfileForm = ({ user }: { user: any }) => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      name: "",
-      email: "",
-      dob: "",
-      accountNo: "",
-      transitNo: "",
-      institutionNo: "",
-      balance: undefined,
-      homeAddress: "",
-      bankAddress: "",
-      taxNo: "",
+      name: user?.name || "",
+      email: user?.email || "",
+      dob: new Date(user.dob).toISOString().split("T")[0] || "",
+      accountNo: user?.accountNo || "",
+      transitNo: user?.transitNo || "",
+      institutionNo: user?.institutionNo || "",
+      balance: String(user?.balance) || "",
+      homeAddress: user?.homeAddress || "",
+      bankAddress: user?.bankAddress || "",
+      taxNo: user?.taxNo || "",
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    try {
+      const res = await myFetch("/users/profile", {
+        method: "PATCH",
+        body: { ...values, balance: Number(values.balance) },
+      });
+      if (res?.success) {
+        toast.success(res.message || "Profile updated successfully");
+        await revalidateTags(["Profile"]);
+        location.reload();
+      } else {
+        toast.error(res.message || "Failed to update profile");
+      }
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   return (
@@ -95,7 +116,7 @@ const EditProfileForm = () => {
               <FormItem>
                 <FormLabel>Date of Birth (DOB)</FormLabel>
                 <FormControl>
-                  <Input placeholder="MM/DD/YYYY" {...field} />
+                  <Input type="date" placeholder="MM/DD/YYYY" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -151,7 +172,7 @@ const EditProfileForm = () => {
               <FormItem>
                 <FormLabel>Balance</FormLabel>
                 <FormControl>
-                  <Input placeholder="$0.00" {...field} />
+                  <Input type="number" placeholder="$0.00" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
