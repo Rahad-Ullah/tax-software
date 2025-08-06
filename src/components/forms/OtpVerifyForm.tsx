@@ -20,6 +20,7 @@ import { myFetch } from "@/utils/myFetch";
 import toast from "react-hot-toast";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
+import { Suspense } from "react";
 
 const formSchema = z.object({
   oneTimeCode: z.string().min(1, { message: "OTP is required" }),
@@ -27,7 +28,8 @@ const formSchema = z.object({
 
 const OtpVerifyForm = () => {
   const router = useRouter();
-  const email = useSearchParams().get("email") as string;
+  const searchParams = new URLSearchParams();
+  const email = searchParams.get("email");
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -77,47 +79,49 @@ const OtpVerifyForm = () => {
   }
 
   return (
-    <section>
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="grid gap-3">
-          <FormField
-            control={form.control}
-            name="oneTimeCode"
-            render={({ field }) => (
-              <FormItem>
-                <FormControl>
-                  <div className="flex justify-center">
-                    <InputOTP maxLength={4} {...field}>
-                      <InputOTPGroup className="flex justify-center">
-                        <InputOTPSlot index={0} />
-                        <InputOTPSlot index={1} />
-                        <InputOTPSlot index={2} />
-                        <InputOTPSlot index={3} />
-                      </InputOTPGroup>
-                    </InputOTP>
-                  </div>
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+    <Suspense fallback={<div>Loading...</div>}>
+      <section>
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="grid gap-3">
+            <FormField
+              control={form.control}
+              name="oneTimeCode"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <div className="flex justify-center">
+                      <InputOTP maxLength={4} {...field}>
+                        <InputOTPGroup className="flex justify-center">
+                          <InputOTPSlot index={0} />
+                          <InputOTPSlot index={1} />
+                          <InputOTPSlot index={2} />
+                          <InputOTPSlot index={3} />
+                        </InputOTPGroup>
+                      </InputOTP>
+                    </div>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
-          <Button type="submit" className="mt-4">
-            Verify Code
-          </Button>
-        </form>
-      </Form>
-      <p className="text-center mt-4">
-        You have not received the email?{" "}
-        <Link
-          onClick={handleResendOtp}
-          href={""}
-          className="text-primary underline"
-        >
-          Resend
-        </Link>
-      </p>
-    </section>
+            <Button type="submit" className="mt-4">
+              Verify Code
+            </Button>
+          </form>
+        </Form>
+        <p className="text-center mt-4">
+          You have not received the email?{" "}
+          <Link
+            onClick={handleResendOtp}
+            href={""}
+            className="text-primary underline"
+          >
+            Resend
+          </Link>
+        </p>
+      </section>
+    </Suspense>
   );
 };
 
