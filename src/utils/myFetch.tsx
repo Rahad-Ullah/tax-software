@@ -53,7 +53,7 @@ export const myFetch = async (
   };
 
   try {
-    const response = await fetch(`${process.env.BASE_URL}${url}`, {
+    const response = await fetch(`${process.env.BASE_API_URL}${url}`, {
       method,
       headers: reqHeaders,
       ...(hasBody && { body: isFormData ? body : JSON.stringify(body) }),
