@@ -15,16 +15,20 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import z from "zod";
 import { Button } from "../ui/button";
+import { myFetch } from "@/utils/myFetch";
+import toast from "react-hot-toast";
 
 const formSchema = z
   .object({
     currentPassword: z
       .string()
       .min(1, { message: "Current password is required" }),
-    newPassword: z.string().min(1, { message: "New password is required" }),
+    newPassword: z
+      .string()
+      .min(8, { message: "New password must be at least 8 characters" }),
     confirmPassword: z
       .string()
-      .min(1, { message: "Confirm password is required" }),
+      .min(8, { message: "Confirm password must be at least 8 characters" }),
   })
   .refine((data) => data.newPassword === data.confirmPassword, {
     path: ["confirmPassword"],
@@ -46,10 +50,21 @@ const ChangePasswordForm = () => {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    try {
+      const res = await myFetch("/auth/change-password", {
+        method: "POST",
+        body: values,
+      });
+      if (res.success) {
+        toast.success(res.message || "Password changed successfully");
+        form.reset();
+      } else {
+        toast.error(res.message || "Password change failed");
+      }
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   return (
