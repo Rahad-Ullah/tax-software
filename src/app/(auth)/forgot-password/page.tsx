@@ -1,6 +1,4 @@
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import ForgotPasswordForm from "@/components/forms/ForgotPasswordForm";
 import Image from "next/image";
 
 const ForgotPasswordPage = () => {
@@ -23,11 +21,7 @@ const ForgotPasswordPage = () => {
           </p>
         </section>
         <section className="grid gap-4 my-8">
-          <div className="grid gap-2">
-            <Label>Email</Label>
-            <Input type="email" placeholder="Enter Your Email" />
-          </div>
-          <Button className="mt-4">Send a code</Button>
+          <ForgotPasswordForm />
         </section>
       </div>
     </div>
