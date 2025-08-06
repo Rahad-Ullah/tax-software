@@ -6,7 +6,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
     <Container>
       <div className="flex gap-6 py-14">
         <Sidebar />
-        {children}
+        <div className="bg-[#FCFCFD] p-6 rounded-lg flex-1">{children}</div>
       </div>
     </Container>
   );
