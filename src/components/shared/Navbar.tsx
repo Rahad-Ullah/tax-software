@@ -45,7 +45,7 @@ const Navbar = ({ user = {} }: { user?: any }) => {
             </ul>
           </section>
           <section>
-            <Link href={"/profile"}>
+            <Link href={"/dashboard/profile"}>
               <Image
                 src={
                   user?.image

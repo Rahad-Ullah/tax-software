@@ -63,7 +63,7 @@ const Sidebar = ({ user }: { user?: any }) => {
       <section>
         <Button
           onClick={handleLogout}
-          className="w-full justify-start rounded bg-white text-muted-foreground shadow-none hover:text-white"
+          className="w-full justify-start mt-4 rounded bg-white text-muted-foreground shadow-none hover:text-white"
         >
           <LogOut size={24} /> Log Out
         </Button>
