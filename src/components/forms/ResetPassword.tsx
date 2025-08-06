@@ -51,10 +51,10 @@ const ResetPasswordForm = () => {
         token: resetToken,
       });
       if (res?.success) {
-        toast.success(res.message || "OTP sent successful");
+        toast.success(res.message || "Password reset successfully");
         router.push(`/login`);
       } else {
-        toast.error(res.message || "OTP sent failed");
+        toast.error(res.message || "Password reset failed");
       }
     } catch (error) {
       console.error(error);

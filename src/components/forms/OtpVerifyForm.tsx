@@ -44,7 +44,11 @@ const OtpVerifyForm = () => {
       });
       if (res?.success) {
         toast.success(res.message || "OTP sent successful");
-        router.push(`/reset-password?auth=${res.data}`);
+        if (res.data) {
+          router.push(`/reset-password?auth=${res.data}`);
+        } else {
+          router.push("/login");
+        }
       } else {
         toast.error(res.message || "OTP sent failed");
         console.error(res.error);
