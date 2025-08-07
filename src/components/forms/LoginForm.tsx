@@ -47,7 +47,7 @@ const LoginForm = () => {
       if (res?.success) {
         toast.success(res.message || "Login successful");
         Cookies.set("accessToken", res.data.accessToken);
-        router.push("/");
+        router.push("/dashboard/profile");
       } else {
         toast.error(res.message || "Login failed");
       }
