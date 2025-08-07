@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Image from "next/image";
+import { Suspense } from "react";
 
 const ResetPasswordPage = () => {
   return (
@@ -25,7 +26,11 @@ const ResetPasswordPage = () => {
           </p>
         </section>
         <section className="grid gap-4 my-8">
-          <ResetPasswordForm />
+          <Suspense
+            fallback={<div className="text-center py-6">Loading...</div>}
+          >
+            <ResetPasswordForm />
+          </Suspense>
         </section>
       </div>
     </div>

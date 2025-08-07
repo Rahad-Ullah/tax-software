@@ -25,17 +25,14 @@ const formSchema = z.object({
     })
     .optional(),
   email: z.string().email("Invalid email.").optional(),
-  dob: z.string().nonempty("Date of birth is required.").optional(),
-  accountNo: z.string().nonempty("Account number is required.").optional(),
-  transitNo: z.string().nonempty("Transit number is required.").optional(),
-  institutionNo: z
-    .string()
-    .nonempty("Institution number is required.")
-    .optional(),
-  balance: z.string().min(0, "Balance must be greater than 0.").optional(),
-  homeAddress: z.string().nonempty("Home address is required.").optional(),
-  bankAddress: z.string().nonempty("Bank address is required.").optional(),
-  taxNo: z.string().nonempty("Tax number is required.").optional(),
+  dob: z.string().optional(),
+  accountNo: z.string().optional(),
+  transitNo: z.string().optional(),
+  institutionNo: z.string().optional(),
+  balance: z.string().optional(),
+  homeAddress: z.string().optional(),
+  bankAddress: z.string().optional(),
+  taxNo: z.string().optional(),
 });
 
 const EditProfileForm = ({ user }: { user: any }) => {

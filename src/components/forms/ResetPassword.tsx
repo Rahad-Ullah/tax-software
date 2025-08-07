@@ -33,8 +33,7 @@ const ResetPasswordForm = () => {
   const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] =
     useState(false);
   const router = useRouter();
-  const searchParams = new URLSearchParams();
-  const resetToken = searchParams.get("auth");
+  const resetToken = useSearchParams().get("auth");
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),

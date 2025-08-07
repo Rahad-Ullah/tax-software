@@ -1,5 +1,6 @@
 import OtpVerifyForm from "@/components/forms/OtpVerifyForm";
 import Image from "next/image";
+import { Suspense } from "react";
 
 const VerifyOtpPage = () => {
   return (
@@ -22,7 +23,11 @@ const VerifyOtpPage = () => {
           </p>
         </section>
         <section className="grid gap-4 my-8">
-          <OtpVerifyForm />
+          <Suspense
+            fallback={<div className="text-center py-6">Loading...</div>}
+          >
+            <OtpVerifyForm />
+          </Suspense>
         </section>
       </div>
     </div>

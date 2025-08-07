@@ -24,7 +24,9 @@ const formSchema = z.object({
     message: "Name must be at least 2 characters.",
   }),
   email: z.string().email("Invalid email."),
-  password: z.string().nonempty("Password is required."),
+  password: z
+    .string()
+    .min(8, { message: "Password must be at least 8 characters" }),
   contact: z.string().nonempty("Contact number is required."),
 });
 

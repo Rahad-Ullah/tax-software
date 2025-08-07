@@ -28,7 +28,7 @@ const formSchema = z.object({
 
 const OtpVerifyForm = () => {
   const router = useRouter();
-  const searchParams = new URLSearchParams();
+  const searchParams = useSearchParams();
   const email = searchParams.get("email");
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -45,14 +45,14 @@ const OtpVerifyForm = () => {
         body: { oneTimeCode: Number(values?.oneTimeCode), email },
       });
       if (res?.success) {
-        toast.success(res.message || "OTP sent successful");
+        toast.success(res.message || "OTP verification successful");
         if (res.data) {
           router.push(`/reset-password?auth=${res.data}`);
         } else {
           router.push("/login");
         }
       } else {
-        toast.error(res.message || "OTP sent failed");
+        toast.error(res.message || "OTP verification failed");
         console.error(res.error);
       }
     } catch (error) {

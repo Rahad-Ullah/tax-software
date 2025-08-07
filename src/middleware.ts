@@ -4,7 +4,12 @@ import { NextResponse } from "next/server";
 import { myFetch } from "./utils/myFetch";
 import { cookies } from "next/headers";
 
-const authRoutes = ["/login", "/forgot-password", "/reset-password"];
+const authRoutes = [
+  "/login",
+  "/sign-up",
+  "/forgot-password",
+  "/reset-password",
+];
 
 // This function can be marked `async` if using `await` inside
 export async function middleware(request: NextRequest) {
@@ -59,6 +64,7 @@ export const config = {
   matcher: [
     "/dashboard/:path*",
     "/login",
+    "/sign-up",
     "/forgot-password",
     "/reset-password",
   ],
