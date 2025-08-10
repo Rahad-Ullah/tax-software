@@ -2,6 +2,12 @@
 
 ## Getting Started
 
+#### Clone the repository:
+
+```bash
+git clone https://github.com/Rahad-Ullah/tax-software.git
+```
+
 #### Create `.env` file and add your environment variables:
 
 ```bash
