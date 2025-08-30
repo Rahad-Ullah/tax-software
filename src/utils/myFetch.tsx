@@ -50,6 +50,8 @@ export const myFetch = async (
     ...(isFormData ? {} : { "Content-Type": "application/json" }),
     ...(accessToken ? { Authorization: `Bearer ${accessToken}` } : {}),
     ...(token ? { Authorization: `${token}` } : {}),
+    // 👇 force ngrok header here
+    // "ngrok-skip-browser-warning": "true",
   };
 
   try {
